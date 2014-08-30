@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class PersonController {
-	private PersonProvider provider;
+	private PersonRepository repository;
 	public PersonController() {
-		provider = new PersonProvider();
+		repository = new PersonRepository();
 	}
 
 	@RequestMapping("/person")
 	public Person getPerson(
 			@RequestParam(value = "id", required = true) Long id) {
-		return provider.getPerson(id);
+		return repository.getPerson(id);
 	}
 }

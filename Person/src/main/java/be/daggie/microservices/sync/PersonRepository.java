@@ -3,10 +3,10 @@ package be.daggie.microservices.sync;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PersonProvider {
+public class PersonRepository {
 	private Map<Long, Person> personMap;
 	
-	public PersonProvider() {
+	public PersonRepository() {
 		personMap = new HashMap<Long, Person>();
 		
 		Person p = new Person(1L, "Bart", "Blommaerts", 1L);
