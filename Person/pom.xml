@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>be.daggie.microservices.sync</groupId>
-	<artifactId>Person</artifactId>
+	<artifactId>person</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Person</name>
-	<description>Person Synchronous Microservice</description>
+	<description>Person Synchronous Microservice, using Spring boot. Running on Tomcat.</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
