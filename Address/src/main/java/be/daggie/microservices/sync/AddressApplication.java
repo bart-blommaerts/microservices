@@ -22,6 +22,9 @@ public class AddressApplication extends Application<AddressConfiguration> {
 	@Override
 	public void run(AddressConfiguration configuration, Environment environment) {
 		final AddressResource resource = new AddressResource();
+		final AddressHealthCheck addressHealthCheck = new AddressHealthCheck();
+
+		environment.healthChecks().register("address", addressHealthCheck);
 		environment.jersey().register(resource);
 	}
 }
