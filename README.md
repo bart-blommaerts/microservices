@@ -34,7 +34,17 @@ Invoke admin pages:
 Invoke health check:
 `http://localhost:7892/healthcheck`
 
-# ASynchronous
+## PersonAddress
+Java application, using DropWizard. Running on Jetty. Calling Person and Address microservice with Jersey.
+
+Usage:
+* mvn clean package
+* java -jar target/personaddress-0.0.1-SNAPSHOT.jar server personaddress.yml 
+
+Invoke service:
+`http://localhost:7895/personaddress?id=2`
+
+# Asynchronous
 Before executing the microservices, start [RabbitMQ](http://www.rabbitmq.com/download.html) :
 `sudo rabbitmq-server`
 
