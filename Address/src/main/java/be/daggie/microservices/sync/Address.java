@@ -3,13 +3,16 @@ package be.daggie.microservices.sync;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Address {
-	private final Long id;
-	private final String street;
-	private final Integer houseNumber;
-	private final String zipCode;
-	private final String city;
-	private final String country;
+	private Long id;
+	private String street;
+	private Integer houseNumber;
+	private String zipCode;
+	private String city;
+	private String country;
 
+	public Address() {
+	}
+	
 	public Address(Long id, String street, Integer houseNumber, String zipCode, String city, String country) {
 		this.id = id;
 		this.street = street;
