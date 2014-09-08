@@ -94,5 +94,5 @@ Usage:
 * java -jar target/address-listener-0.0.1-SNAPSHOT.jar
 
 Listener does not need to be explicitly invoked, but will display messages on receival. This can be changed in `AddressListenerController` as it is a `RestController`.
-After updating an address with the Address Publisher and waiting for the listener to be invoked, the Address for the Synchronous Address and PersonAddress microservices will be updated.
+After updating an address with the Address Publisher and waiting for the listener to be invoked, the address of the Synchronous Address and PersonAddress microservices will be updated.
 
