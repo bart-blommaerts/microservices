@@ -1,5 +1,7 @@
 package be.daggie.microservices.async;
 
+import java.util.Map;
+
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -41,12 +43,13 @@ public class PersonPublisherController {
 		return BindingBuilder.bind(queue).to(exchange).with(QUEUE_NAME);
 	}
 
-	@RequestMapping("/send")
-	public void sendAllPersons() throws InterruptedException {
-        System.out.println("Waiting five seconds...");
-        Thread.sleep(5000);
+	@RequestMapping("/sendall")
+	public Map<Long, Person> sendAllPersons() throws InterruptedException {
         System.out.println("Sending message...");
         rabbitTemplate.convertAndSend(QUEUE_NAME, repository.getAllPersons());
+        System.out.println("Message sent.");
+        
+        return repository.getAllPersons();
 	}
 	
 	@RequestMapping("/addperson")

@@ -12,10 +12,10 @@ public class PersonRepository {
 		Person p = new Person(1L, "Bart", "Blommaerts", 1L);
 		putPerson(p);
 		
-		p = new Person(2L, "Iris", "Geeraerts", 1L);
+		p = new Person(2L, "Iris", "Geeraerts", 2L);
 		putPerson(p);
 		
-		p = new Person(3L, "Mathis", "Blommaerts", 1L);
+		p = new Person(3L, "Mathis", "Blommaerts", 3L);
 		putPerson(p);
 	}
 	
