@@ -20,6 +20,7 @@ Invoke metrics:
 
 ## Address
 Java application, using DropWizard. Running on Jetty.
+The addresses are stored in a json file. The location of this file can be changed in `AddressRepository`. In an actual application this would probably a database of your choice.
 
 Usage:
 * mvn clean package
@@ -56,12 +57,12 @@ Usage:
 * java -jar target/person-publisher-0.0.1-SNAPSHOT.jar
 
 Send message to queue:
-`http://localhost:7893/send`
+`http://localhost:7893/sendall`
 
 Add person to repository:
 `http://localhost:7893/addperson?id=4&firstName=Luke&lastName=Skywalker&adresId=1`
 
-Adding a person does not send it to queue directly. Use `/send` again.
+Adding a person does not send it to queue directly. Use `/sendall` again.
 
 ## Person Listener
 Java application, using Spring Boot. Running on Tomcat and RabbitMQ.
@@ -71,4 +72,27 @@ Usage:
 * java -jar target/person-listener-0.0.1-SNAPSHOT.jar
 
 Listener does not need to be explicitly invoked, but will display messages on receival. This can be changed in `PersonListenerController` as it is a `RestController`.
+
+
+
+## Address Publisher
+Java application, using Spring Boot. Running on Tomcat and RabbitMQ.
+
+Usage:
+* mvn clean package
+* java -jar target/address-publisher-0.0.1-SNAPSHOT.jar
+
+Update address and send it to queue:
+`http://localhost:7897/updateAddress?id=2&street=AwesomeStreet&houseNumber=2&zipCode=1230&city=SF&country=USA`
+
+
+## Address Listener
+Java application, using Spring Boot. Running on Tomcat and RabbitMQ.
+
+Usage:
+* mvn clean package
+* java -jar target/address-listener-0.0.1-SNAPSHOT.jar
+
+Listener does not need to be explicitly invoked, but will display messages on receival. This can be changed in `AddressListenerController` as it is a `RestController`.
+After updating an address with the Address Publisher and waiting for the listener to be invoked, the Address for the Synchronous Address and PersonAddress microservices will be updated.
 
