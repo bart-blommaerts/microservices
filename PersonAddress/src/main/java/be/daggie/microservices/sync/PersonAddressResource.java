@@ -18,6 +18,10 @@ public class PersonAddressResource {
 
 	private final Client client;
 
+	private Boolean addressIsCached = Boolean.FALSE;
+	private Address address = null;
+	private Long cachedAddressId = -1L;
+
 	public PersonAddressResource(Client client) {
 		this.client = client;
 	}
@@ -26,21 +30,33 @@ public class PersonAddressResource {
 	public PersonAddress getPersonAddress(@QueryParam("id") Long id)
 			throws URISyntaxException {
 		Person p = getPerson(id);
-		
-		Address a = getAddress(p.getAdresId());
 
-		return new PersonAddress(p, a);
+		if (!addressIsCached || cachedAddressId != p.getAdresId()) {
+			address = getAddress(p.getAdresId());
+			setCaching(address.getId());
+		}
+
+		return new PersonAddress(p, address);
 	}
-	
+
+	private void setCaching(Long addressId) {
+		cachedAddressId = addressId;
+		addressIsCached = Boolean.TRUE;
+	}
+
 	private Person getPerson(Long id) {
-		WebResource webResource = client.resource("http://localhost:7890/person?id=" + id);
-		ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
+		WebResource webResource = client
+				.resource("http://localhost:7890/person?id=" + id);
+		ClientResponse response = webResource.accept("application/json").get(
+				ClientResponse.class);
 		return response.getEntity(Person.class);
 	}
-	
+
 	private Address getAddress(Long id) {
-		WebResource webResource = client.resource("http://localhost:7891/address/" + id);
-		ClientResponse response = webResource.accept("application/json").get(ClientResponse.class);
+		WebResource webResource = client
+				.resource("http://localhost:7891/address/" + id);
+		ClientResponse response = webResource.accept("application/json").get(
+				ClientResponse.class);
 		return response.getEntity(Address.class);
 	}
 }
