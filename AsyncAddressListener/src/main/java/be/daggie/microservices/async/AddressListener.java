@@ -20,8 +20,6 @@ public class AddressListener {
 	}
 
 	public void receiveMessage(Address message) throws JsonProcessingException {
-		System.out.println("Received a message  ..");
-
 		addressMap = new HashMap<Long, Address>();
 		convertListToMap(getCurrentAddressesFromFile());
 
